@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello vue</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .class1{
+            height: 50;
+            background-color: aqua;
+        }
+
+        .class2{
+            height: 50;
+            background-color: black;
+        }
+        .demo1{
+            height: 50;
+            background-color: black;
+        }
+
+        .ul1{
+            height: 100px;
+            background-color: blue;
+            overflow: auto;
+        }
+
+        .ul1 li{
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{msg}}</h1>
+        <!--阻止跳转(默认事件)-->
+        <a href="https://www.baidu.com/" @click.prevent="showInfo">点击</a>
+        <!--阻止事件冒泡-->
+    <div class="class1" @click="showInfo">
+         <button @click.stop="showInfo">点我提升</button>
+    </div>
+   <!--事件只执行一次-->
+        <button @click.once="showInfo">点我提升1</button>
+    <!--事件捕获-->
+    <div class="box1" @click.capture="showInfo1">
+        div1
+        <div class="box2" @click="showInfo1">
+            div2
+       </div>
+   </div>
+
+   <div class="demo1" @click.self="showInfo">
+    <button @click="showInfo">点我提升</button>
+    </div>
+    <!--鼠标/滚动条事件-->
+    <ul class="ul1" @wheel.passive="demo">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    </div>
+
+
+    <script>
+        Vue.config.productionTip = false;
+
+        new Vue({
+            el: '#root',
+            data: {
+                msg: 'asdsd'
+            },
+            methods: {
+                showInfo(event) {
+                    alert('hello')
+                },
+                showInfo1(event) {
+                    alert('hello1')
+                },
+                demo(event) {
+                    for (let index = 0; index < 1000; index++) {
+                        console.log(2)
+                    
+                    }
+                },
+                demo1(event) {
+                    console.log(2)
+                },
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
